@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 
@@ -19,6 +19,7 @@ const createWindow = () => {
 
 // CALLING FUNCTION WHEN THE APP IS READY
 app.whenReady().then(() => {
+    ipcMain.handle('ping', () => 'pong');
     createWindow();
 
     // Open a window if none are open (macOS)
