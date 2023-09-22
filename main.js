@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 
 // createWindow() function loads your web page into a new BrowserWindow instance
@@ -6,7 +7,11 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 900,
         height: 900,
-        frame: false
+        frame: false,
+        //attaching script to renderer process
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
     });
 
     win.loadFile('index.html');
